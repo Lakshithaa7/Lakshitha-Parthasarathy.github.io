@@ -84,22 +84,22 @@
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" action="tel:8754499752">
+								<form method="post" onsubmit="sendEmail()">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
+											<input type="text" id="name" placeholder="Your Name" required />
 										</div>
 										<div class="field half">
 											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
+											<input type="email" id="email" placeholder="Email Id" required />
 										</div>
 										<div class="field">
 											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
+											<textarea name="message" id="message" placeholder="Your message here..." rows="7"></textarea>
 										</div>
 									</div>
-									<ul class="actions">
+									<ul class="onsubmit">
 										<li><input type="submit" value="Send Message" class="primary" /></li>
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
@@ -132,6 +132,24 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+		        <script src="https://smtpjs.com/v3/smtp.js>"></script>
+			<script>
+				function sendEmail(){
+					Email.send({
+	Host : "smtp.gmail.com",
+	Username : "lakshithasarathy07@gmail.com",
+	Password : "pachiama7777",
+	To : 'lakshithasarathy07@gmail.com',
+	From : document.getElementById("email").value,
+	Subject : "You have received a new message",
+	Body : "Name: " + document.getElementById("name").value
+			 +"<br> Email: " + document.getElementById("email").value
+			 +"<br> Message: " + document.getElementById("message").value
+}).then(
+  message => alert("Message sent successfully")
+);
+				}
+			</script>
 
 	</body>
 </html>
